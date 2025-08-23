@@ -11,9 +11,15 @@ use Throwable;
 
 class AuthController extends BaseController
 {
-    public function login(Request $request) {
+    public function login(Request $request)
+    {
         try {
             $user = User::where('email', $request['email'])->first();
+
+            if (!$user) {
+                return $this->errorResponse('Credential did not match', 400);
+            }
+
             if (Hash::check($request['password'], $user->password)) {
                 Auth::login($user);
                 $token = $user->createToken($request['email']);
