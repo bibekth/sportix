@@ -111,7 +111,7 @@ class AuthController extends BaseController
 
             $user = User::where('email', $request['email'])->first();
 
-            if ($user->otp !== $request['otp']) {
+            if ($user->otp != $request['otp']) {
                 return $this->errorResponse('OTP did not match.', 400);
             }
 
