@@ -45,7 +45,7 @@ class AuthController extends BaseController
     {
         try {
             $validator = Validator::make($request->all(), [
-                'namex' => 'required|string',
+                'name' => 'required|string',
                 'username' => 'required|string|unique:users,username',
                 'contact' => 'required|string|unique:users,contact',
                 'email' => 'required|email|unique:users,email',
@@ -91,7 +91,7 @@ class AuthController extends BaseController
             $user = User::where('email', $request['email'])->first();
             $user->update(['otp' => $otp]);
 
-            return $this->sendResponse();
+            return $this->sendResponse(['otp' => $otp]);
         } catch (Throwable $e) {
             return $this->error500($e->getMessage());
         }
