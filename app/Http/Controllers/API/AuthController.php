@@ -14,7 +14,7 @@ class AuthController extends BaseController
     public function login(Request $request)
     {
         try {
-            $user = User::where('email', $request['email'])->first();
+            $user = User::where('username', $request['username'])->first();
 
             if (!$user) {
                 return $this->errorResponse('Credential did not match', 400);
@@ -22,7 +22,7 @@ class AuthController extends BaseController
 
             if (Hash::check($request['password'], $user->password)) {
                 Auth::login($user);
-                $token = $user->createToken($request['email']);
+                $token = $user->createToken($request['username']);
                 return $this->sendResponse(['token' => $token, 'user' => $user]);
             }
             return $this->errorResponse('Credential did not match', 400);
