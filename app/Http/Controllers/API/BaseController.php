@@ -45,6 +45,20 @@ class BaseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function validatorResponse(mixed $error)
+    {
+        $response = [
+            'success' => false,
+            'message' => $error,
+        ];
+        return response()->json($response, 422);
+    }
+
+    /**
+     * return error response.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function error401()
     {
         $response = [
