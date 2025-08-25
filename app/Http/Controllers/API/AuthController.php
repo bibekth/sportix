@@ -86,7 +86,7 @@ class AuthController extends BaseController
                 return $this->validatorResponse($validator->errors(), 422);
             }
 
-            $otp = rand(0000, 9999);
+            $otp = rand(1000, 9999);
 
             $user = User::where('email', $request['email'])->first();
             $user->update(['otp' => $otp]);
