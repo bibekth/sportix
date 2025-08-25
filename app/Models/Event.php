@@ -22,6 +22,6 @@ class Event extends Model
 
     public function getStartsOnAttribute($value)
     {
-        return Carbon::parse($value)->format('D, M d, H:i');
+        return Carbon::parse($value)->format('D, M d at H:i');
     }
 }
