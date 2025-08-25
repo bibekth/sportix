@@ -16,5 +16,7 @@ Route::group(['namespace' => 'App\Http\Controllers\API'], function () {
         Route::post('change/password', 'changePassword')->name('change.password');
     });
 
-    
+    Route::group(['middleware' => 'auth:sanctum'], function() {
+        Route::apiResource('events', 'EventController');
+    });
 });
