@@ -15,4 +15,6 @@ Route::group(['namespace' => 'App\Http\Controllers\API'], function () {
         Route::post('verify/otp', 'verifyOTP')->name('verify.otp');
         Route::post('change/password', 'changePassword')->name('change.password');
     });
+
+    
 });
