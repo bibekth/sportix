@@ -13,10 +13,27 @@ class TicketController extends BaseController
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $auth = User::find(Auth::id());
-        $tickets = Ticket::with('event')->where('user_id', $auth->id)->get();
+
+        // Update expired tickets before fetching
+        $this->checkTicketStatus($auth);
+
+        if ($request->status == 'active') {
+            $tickets = Ticket::with('event')
+                ->where('user_id', $auth->id)
+                ->where('status', 1)
+                ->get();
+        } elseif ($request->status == 'inactive') {
+            $tickets = Ticket::with('event')
+                ->where('user_id', $auth->id)
+                ->where('status', 0)
+                ->get();
+        } else {
+            $tickets = Ticket::with('event')->where('user_id', $auth->id)->get();
+        }
+
         return $this->sendResponse($tickets);
     }
 
@@ -55,5 +72,20 @@ class TicketController extends BaseController
     public function destroy(Ticket $ticket)
     {
         //
+    }
+
+    private function checkTicketStatus($auth)
+    {
+        // Get all tickets of user with related event
+        $tickets = Ticket::with('event')->where('user_id', $auth->id)->get();
+
+        foreach ($tickets as $ticket) {
+            if ($ticket->event && $ticket->event->starts_on->lt(now()->startOfDay())) {
+                // If event started before today, mark ticket as inactive (0)
+                if ($ticket->status != 0) {
+                    $ticket->update(['status' => 0]);
+                }
+            }
+        }
     }
 }
