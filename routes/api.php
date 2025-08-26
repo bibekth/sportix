@@ -18,5 +18,6 @@ Route::group(['namespace' => 'App\Http\Controllers\API'], function () {
 
     Route::group(['middleware' => 'auth:sanctum'], function() {
         Route::apiResource('events', 'EventController');
+        Route::apiResource('tickets', 'TicketController');
     });
 });
