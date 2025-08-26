@@ -110,6 +110,29 @@
                             @enderror
                         </div>
 
+                        <!-- Price -->
+                        <div>
+                            <label for="price" class="block text-sm font-medium text-gray-700 mb-2">
+                                <span class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                    Ticket Price
+                                </span>
+                            </label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <span class="text-gray-500 sm:text-sm">$</span>
+                                </div>
+                                <input type="number" name="price" id="price" min="0" step="0.01" value="{{ old('price', $event->price) }}"
+                                    class="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
+                                    placeholder="0.00">
+                            </div>
+                            <p class="mt-1 text-xs text-gray-500">Leave empty or set to 0 for free events</p>
+                        </div>
+
                         <!-- Status -->
                         <div>
                             <label for="status" class="block text-sm font-medium text-gray-700 mb-2">
@@ -124,7 +147,8 @@
                             </label>
                             <select name="status" id="status"
                                 class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 @error('status') border-red-300 focus:ring-red-500 focus:border-red-500 @enderror">
-                                <option value="1" {{ old('status', $event->status) == 1 ? 'selected' : '' }}>Active
+                                <option value="1" {{ old('status', $event->status) == 1 ? 'selected' : '' }}>
+                                    Active
                                 </option>
                                 <option value="0" {{ old('status', $event->status) == 0 ? 'selected' : '' }}>
                                     Inactive
@@ -208,7 +232,8 @@
                                         <label class="block text-sm font-medium text-gray-700 mb-2">Current
                                             Logo</label>
                                         <div class="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-                                            <img src="{{ $event->team_one_logo }}" alt="{{ $event->team_one }}" width="180" height="180"
+                                            <img src="{{ $event->team_one_logo }}" alt="{{ $event->team_one }}"
+                                                width="180" height="180"
                                                 class="w-12 h-12 rounded-full object-cover"
                                                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjQiIGN5PSIyNCIgcj0iMjQiIGZpbGw9IiNGM0Y0RjYiLz4KPHN2ZyB4PSIxMiIgeT0iMTIiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0iIzlDQTNCMCI+CjxwYXRoIGQ9Ik0xMiAxMmE0IDQgMCAxMTAgOCA0IDQgMCAwMTAtOHpNMTQgMjBoNGEyIDIgMCAwMTIgMnYyYTIgMiAwIDAxLTIgMkg4YTIgMiAwIDAxLTItMnYtMmEyIDIgMCAwMTItMmg0eiIvPgo8L3N2Zz4KPC9zdmc+Cg=='">
                                             <span class="text-sm text-gray-600">{{ $event->team_one }}</span>
@@ -222,7 +247,8 @@
                                         Preview</label>
                                     <div
                                         class="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
-                                        <img id="team_one_preview_img" src="" alt="Team One Logo" width="180" height="180"
+                                        <img id="team_one_preview_img" src="" alt="Team One Logo"
+                                            width="180" height="180"
                                             class="w-12 h-12 rounded-full object-cover">
                                         <span class="text-sm text-blue-600">Updated logo preview</span>
                                     </div>
@@ -286,7 +312,8 @@
                                         <label class="block text-sm font-medium text-gray-700 mb-2">Current
                                             Logo</label>
                                         <div class="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-                                            <img src="{{ $event->team_two_logo }}" alt="{{ $event->team_two }}" width="180" height="180"
+                                            <img src="{{ $event->team_two_logo }}" alt="{{ $event->team_two }}"
+                                                width="180" height="180"
                                                 class="w-12 h-12 rounded-full object-cover"
                                                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjQiIGN5PSIyNCIgcj0iMjQiIGZpbGw9IiNGM0Y0RjYiLz4KPHN2ZyB4PSIxMiIgeT0iMTIiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0iIzlDQTNCMCI+CjxwYXRoIGQ9Ik0xMiAxMmE0IDQgMCAxMTAgOCA0IDQgMCAwMTAtOHpNMTQgMjBoNGEyIDIgMCAwMTIgMnYyYTIgMiAwIDAxLTIgMkg4YTIgMiAwIDAxLTItMnYtMmEyIDIgMCAwMTItMmg0eiIvPgo8L3N2Zz4KPC9zdmc+Cg=='">
                                             <span class="text-sm text-gray-600">{{ $event->team_two }}</span>
@@ -300,7 +327,8 @@
                                         Preview</label>
                                     <div
                                         class="flex items-center space-x-3 p-3 bg-red-50 rounded-lg border border-red-200">
-                                        <img id="team_two_preview_img" src="" alt="Team Two Logo" width="180" height="180"
+                                        <img id="team_two_preview_img" src="" alt="Team Two Logo"
+                                            width="180" height="180"
                                             class="w-12 h-12 rounded-full object-cover">
                                         <span class="text-sm text-red-600">Updated logo preview</span>
                                     </div>

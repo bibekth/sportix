@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="min-h-screen bg-gray-50 py-8">
+    <div class="min-h-screen bg-gray-50 py-4">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Header Section -->
             <div class="mb-8">
@@ -86,6 +86,29 @@
                             @error('starts_on')
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                             @enderror
+                        </div>
+
+                        <!-- Price -->
+                        <div>
+                            <label for="price" class="block text-sm font-medium text-gray-700 mb-2">
+                                <span class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                    Ticket Price
+                                </span>
+                            </label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <span class="text-gray-500 sm:text-sm">Rs</span>
+                                </div>
+                                <input type="number" name="price" id="price" min="0" step="0.01"
+                                    class="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
+                                    placeholder="0.00">
+                            </div>
+                            <p class="mt-1 text-xs text-gray-500">Leave empty or set to 0 for free events</p>
                         </div>
 
                         <!-- Status -->
@@ -363,6 +386,34 @@
         document.getElementById('team_two').addEventListener('input', function() {
             const name = this.value || 'Team Two';
             document.getElementById('preview_team_two').textContent = name;
+        });
+
+        // Price preview functionality
+        document.getElementById('price').addEventListener('input', function() {
+            const price = parseFloat(this.value);
+            const pricePreview = document.getElementById('price_preview');
+
+            if (!price || price === 0) {
+                pricePreview.innerHTML = `
+            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd"
+                    d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
+                    clip-rule="evenodd"></path>
+            </svg>
+            Free Event`;
+                pricePreview.className =
+                    'inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800';
+            } else {
+                pricePreview.innerHTML = `
+            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd"
+                    d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
+                    clip-rule="evenodd"></path>
+            </svg>
+            $${price.toFixed(2)}`;
+                pricePreview.className =
+                    'inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800';
+            }
         });
     </script>
 </x-app-layout>

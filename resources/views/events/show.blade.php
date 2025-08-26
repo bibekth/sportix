@@ -151,6 +151,68 @@
 
                 <!-- Sidebar -->
                 <div class="space-y-6">
+                    <!-- Price Card -->
+                    <div class="bg-white shadow-xl rounded-xl border border-gray-200 overflow-hidden">
+                        <div class="bg-gradient-to-r from-emerald-50 to-green-50 px-6 py-4 border-b border-gray-200">
+                            <h3 class="text-lg font-semibold text-gray-900 flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                Ticket Price
+                            </h3>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-center">
+                                @if ($event->price && $event->price > 0)
+                                    <div class="flex flex-col items-center space-y-3">
+                                        <div
+                                            class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
+                                            <svg class="w-8 h-8 text-blue-600" fill="currentColor"
+                                                viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd"
+                                                    d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
+                                                    clip-rule="evenodd"></path>
+                                            </svg>
+                                        </div>
+                                        <span
+                                            class="inline-flex items-center px-4 py-2 rounded-full text-lg font-bold bg-blue-100 text-blue-800 ring-1 ring-blue-600/20">
+                                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd"
+                                                    d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
+                                                    clip-rule="evenodd"></path>
+                                            </svg>
+                                            ${{ number_format($event->price, 2) }}
+                                        </span>
+                                        <p class="text-xs text-gray-500 text-center">per ticket</p>
+                                    </div>
+                                @else
+                                    <div class="flex flex-col items-center space-y-3">
+                                        <div
+                                            class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
+                                            <svg class="w-8 h-8 text-green-600" fill="currentColor"
+                                                viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd"
+                                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                    clip-rule="evenodd"></path>
+                                            </svg>
+                                        </div>
+                                        <span
+                                            class="inline-flex items-center px-4 py-2 rounded-full text-lg font-bold bg-green-100 text-green-800 ring-1 ring-green-600/20">
+                                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd"
+                                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                    clip-rule="evenodd"></path>
+                                            </svg>
+                                            Free Event
+                                        </span>
+                                        <p class="text-xs text-gray-500 text-center">no ticket required</p>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
                     <!-- Status Card -->
                     <div class="bg-white shadow-xl rounded-xl border border-gray-200 overflow-hidden">
                         <div class="bg-gradient-to-r from-purple-50 to-pink-50 px-6 py-4 border-b border-gray-200">

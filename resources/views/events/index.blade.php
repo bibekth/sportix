@@ -11,7 +11,7 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-10xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="overflow-x-auto">
                     <table class="min-w-full divide-y divide-gray-200">
@@ -59,6 +59,17 @@
                                             <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                         </svg>
                                         <span>Team Two</span>
+                                    </div>
+                                </th>
+                                <th scope="col"
+                                    class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    <div class="flex items-center space-x-1">
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span>Price</span>
                                     </div>
                                 </th>
                                 <th scope="col"
@@ -172,6 +183,45 @@
                                         </div>
                                     </td>
 
+                                    <!-- Price -->
+                                    <td class="px-1 py-4 whitespace-nowrap">
+                                        <div class="flex items-center space-x-2">
+                                            @if ($item->price && $item->price > 0)
+                                                <span
+                                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 ring-1 ring-blue-600/20">
+                                                    <svg class="w-3 h-3 mr-1" fill="currentColor"
+                                                        viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd"
+                                                            d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
+                                                            clip-rule="evenodd"></path>
+                                                    </svg> &nbsp;
+                                                    Rs. {{ number_format($item->price) }}
+                                                </span>
+                                                {{-- <span
+                                                    class="inline-flex items-center whitespace-nowrap px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 ring-1 ring-blue-600/20">
+                                                    <svg class="w-3 h-3 mr-1 shrink-0" fill="currentColor"
+                                                        viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd"
+                                                            d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
+                                                            clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    NRP {{ number_format($item->price) }}
+                                                </span> --}}
+                                            @else
+                                                <span
+                                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 ring-1 ring-green-600/20">
+                                                    <svg class="w-3 h-3 mr-1" fill="currentColor"
+                                                        viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd"
+                                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                            clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    Free
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </td>
+
                                     <!-- Status -->
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center space-x-2">
@@ -260,7 +310,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="7" class="px-6 py-12 text-center">
+                                    <td colspan="8" class="px-6 py-12 text-center">
                                         <div class="flex flex-col items-center justify-center space-y-3">
                                             <div
                                                 class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center">

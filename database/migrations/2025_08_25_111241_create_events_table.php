@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('team_one_logo');
             $table->string('team_two');
             $table->string('team_two_logo');
+            $table->string('price')->default(0);
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
