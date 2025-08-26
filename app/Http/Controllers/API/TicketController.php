@@ -16,7 +16,7 @@ class TicketController extends BaseController
     public function index()
     {
         $auth = User::find(Auth::id());
-        $tickets = Ticket::where('user_id', $auth->id)->get();
+        $tickets = Ticket::with('event')->where('user_id', $auth->id)->get();
         return $this->sendResponse($tickets);
     }
 
