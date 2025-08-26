@@ -144,4 +144,8 @@ class AuthController extends BaseController
             return $this->error500($e->getMessage());
         }
     }
+
+    public function profile() {
+        return $this->sendResponse(User::find(Auth::id()));
+    }
 }

@@ -14,6 +14,7 @@ Route::group(['namespace' => 'App\Http\Controllers\API'], function () {
         Route::post('send/otp', 'sendOTP')->name('send.otp');
         Route::post('verify/otp', 'verifyOTP')->name('verify.otp');
         Route::post('change/password', 'changePassword')->name('change.password');
+        Route::get('profile', 'profile')->name('profile')->middleware('auth:sanctum');
     });
 
     Route::group(['middleware' => 'auth:sanctum'], function() {
