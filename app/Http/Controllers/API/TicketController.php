@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Ticket;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -80,7 +81,7 @@ class TicketController extends BaseController
         $tickets = Ticket::with('event')->where('user_id', $auth->id)->get();
 
         foreach ($tickets as $ticket) {
-            if ($ticket->event && $ticket->event->starts_on->lt(now()->startOfDay())) {
+            if ($ticket->event && Carbon::parse($ticket->event->starts_on)->lt(now()->startOfDay())) {
                 // If event started before today, mark ticket as inactive (0)
                 if ($ticket->status != 0) {
                     $ticket->update(['status' => 0]);
