@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Event;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class EventController extends BaseController
@@ -13,7 +14,9 @@ class EventController extends BaseController
      */
     public function index()
     {
-        $data = Event::all();
+        $data = Event::where('starts_on', '>=', Carbon::today())
+        ->orderBy('starts_on', 'asc')
+        ->get();
 
         return $this->sendResponse($data);
     }

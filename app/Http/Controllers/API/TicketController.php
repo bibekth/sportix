@@ -24,15 +24,15 @@ class TicketController extends BaseController
         if ($request->status == 'active') {
             $tickets = Ticket::with('event')
                 ->where('user_id', $auth->id)
-                ->where('status', 1)
+                ->where('status', 1)->orderBy('id', 'desc')
                 ->get();
         } elseif ($request->status == 'inactive') {
             $tickets = Ticket::with('event')
                 ->where('user_id', $auth->id)
-                ->where('status', 0)
+                ->where('status', 0)->orderBy('id', 'desc')
                 ->get();
         } else {
-            $tickets = Ticket::with('event')->where('user_id', $auth->id)->get();
+            $tickets = Ticket::with('event')->where('user_id', $auth->id)->orderBy('id', 'desc')->get();
         }
 
         return $this->sendResponse($tickets);
